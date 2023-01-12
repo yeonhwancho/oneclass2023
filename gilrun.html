@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>girlrun</title>
+    
+    <script>
+        let frame = 0;
+        let canvas;
+        let ctx;
+
+        let horse = [];
+
+        for(let index=1; index <= 1; index++){
+            const img = new Image();
+            img.src = "girlrun.png";
+
+            horse.push(img);
+        }
+
+        function init() {
+            canvas = document.querySelector("canvas");
+            ctx = canvas.getContext("2d");
+
+            draw();
+
+            setInterval(draw,50);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            horse.forEach( (item, index) => {
+                ctx.drawImage(item, frame * (932 / 8), 0, (932 / 8), 120, 0, (index * 120), (932 / 8), 120);
+            });
+
+            frame++;
+            frame = frame % 8;
+        }
+
+    </script>
+</head>
+<body onload="init()">
+    <canvas width="1980" height="1980"></canvas>
+</body>
+</html>
